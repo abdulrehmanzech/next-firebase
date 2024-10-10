@@ -27,37 +27,36 @@ export default function Home() {
       name: "CheckIn Name",
       date: "12th Nov, 2022",
       owner: "John Doe",
-      image: "/assets/1.jpg", // Random travel images
+      image: "/assets/1.jpg", 
     },
     {
       id: 1,
       name: "CheckIn Name",
       date: "12th Nov, 2022",
       owner: "John Doe",
-      image: "/assets/2.jpg", // Random travel images
+      image: "/assets/2.jpg", 
     },
     {
       id: 1,
       name: "CheckIn Name",
       date: "12th Nov, 2022",
       owner: "John Doe",
-      image: "/assets/3.jpg", // Random travel images
+      image: "/assets/3.jpg", 
     },
     {
       id: 1,
       name: "CheckIn Name",
       date: "12th Nov, 2022",
       owner: "John Doe",
-      image: "/assets/4.jpg", // Random travel images
+      image: "/assets/4.jpg",
     },
-    // Add more check-ins as needed
   ];
   const [checkinss, setCheckins] = useState<any[]>([]);
 
   const [openModal, setOpenModal] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const handleOpenModal = () => setOpenModal(true);
-const [imageUrl, setImageUrl] = useState<any>();
+  const [imageUrl, setImageUrl] = useState<any>();
   const handleCloseModal = () => setOpenModal(false);
   useEffect(() => {
     const fetchCheckIns = async () => {
@@ -71,13 +70,12 @@ const [imageUrl, setImageUrl] = useState<any>();
 
     fetchCheckIns();
   }, []);
-  console.log(checkinss,"checkinsscheckinss")
+  console.log(checkinss, "checkinsscheckinss");
 
   return (
     <Box>
-      {/* AppBar with logo, feedback, notifications, avatar */}
       <AppBar position="static" color="transparent" elevation={0}>
-        <Toolbar >
+        <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Logo
           </Typography>
@@ -129,73 +127,75 @@ const [imageUrl, setImageUrl] = useState<any>();
           Added CheckIns
         </Typography>
         <Grid container sx={{ marginBottom: 3 }} spacing={3}>
-        {checkinss.map((checkin:any) => {
-  // Convert Firestore timestamp to Date
-  console.log(checkin,"dkdkd")
-  const date = new Date(checkin?.timestamp?.seconds * 1000);
-  const formattedDate = date.toLocaleDateString(); // Format the date to your preference
-  return (
-    <Grid item xs={12} sm={6} md={3} key={checkin.id}>
-      <Card
-        sx={{
-          borderRadius: 2,
-          padding: 2,
-          boxShadow: 3,
-          position: "relative",
-        }}
-      >
-        {/* CardMedia for the image */}
-        <CardMedia
-          component="img"
-          image={checkin.image} 
-          alt="checkin image"
-          sx={{
-            height: 200,
-            borderRadius: 2,
-            objectFit: "cover",
-          }}
-        />
+          {checkinss.map((checkin: any) => {
+            console.log(checkin, "dkdkd");
+            const date = new Date(checkin?.timestamp?.seconds * 1000);
+            const formattedDate = date.toLocaleDateString();
+            return (
+              <Grid item xs={12} sm={6} md={3} key={checkin.id}>
+                <Card
+                  sx={{
+                    borderRadius: 2,
+                    padding: 2,
+                    boxShadow: 3,
+                    position: "relative",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={checkin.image}
+                    alt="checkin image"
+                    sx={{
+                      height: 200,
+                      borderRadius: 2,
+                      objectFit: "cover",
+                    }}
+                  />
 
-        {/* Tag overlaying the image */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: 30,
-            right: 30,
-            backgroundColor: "rgb(156, 39, 176)", // Semi-transparent background
-            padding: "4px 8px",
-            borderRadius: 4,
-            color: "white",
-          }}
-        >
-          <Typography variant="body2">Checked In</Typography>
-        </Box>
+                  
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 30,
+                      right: 30,
+                      backgroundColor: "rgb(156, 39, 176)", 
+                      padding: "4px 8px",
+                      borderRadius: 4,
+                      color: "white",
+                    }}
+                  >
+                    <Typography variant="body2">Checked In</Typography>
+                  </Box>
 
-        <CardContent>
-          {/* CheckIn Details */}
-          <Typography variant="h6" gutterBottom>
-            {checkin.title} {/* Using the title property */}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {formattedDate} {/* Displaying the formatted date */}
-          </Typography>
-          <Box
-            sx={{ display: "flex", alignItems: "center", marginTop: 1 }}
-          >
-            <Avatar
-              src="/path-to-avatar" // Placeholder avatar image
-              sx={{ width: 24, height: 24, marginRight: 1 }}
-            />
-            <Typography variant="body2" color="textSecondary">
-              Owner: {checkin.owner || 'Unknown'} {/* Placeholder for owner */}
-            </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    </Grid>
-  );
-})}
-
+                  <CardContent>
+                    {/* CheckIn Details */}
+                    <Typography variant="h6" gutterBottom>
+                      {checkin.title} 
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {formattedDate}
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: 1,
+                      }}
+                    >
+                      <Avatar
+                        src="/path-to-avatar" 
+                        sx={{ width: 24, height: 24, marginRight: 1 }}
+                      />
+                      <Typography variant="body2" color="textSecondary">
+                        Owner: {checkin.owner || "Unknown"}{" "}
+                        
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
       <AddCheckInModal
@@ -204,7 +204,6 @@ const [imageUrl, setImageUrl] = useState<any>();
         uploadedImage={uploadedImage}
         setUploadedImage={setUploadedImage}
       />
-
     </Box>
   );
 }
